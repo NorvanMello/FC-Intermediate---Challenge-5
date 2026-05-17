@@ -32,7 +32,12 @@
         Search for a place.
       </label>
 
-      <input type="search" id="search-input" placeholder="Search for a place">
+      <div class="input-wrapper">
+        <input type="search" id="search-input" placeholder="Search for a place...">
+        <button type="submit" class="input-btn">
+          <img src="./assets/images/icon-search.svg" alt="" class="search-icon">
+        </button>
+      </div>
 
       <button type="submit" class="search-btn">Search</button>
     </form>
@@ -40,8 +45,54 @@
     <div class="content-container">
 
       <div class="left-content">
+
         <div class="weather-info-container">
 
+          <div class="weather-info">
+              <div class="location-info">
+                <h3 class="location">
+                  Belin, Germany
+                </h3>
+
+                <span class="date">
+                  Tuesday, Aug 5, 2025
+                </span>
+              </div>
+
+              <div class="temperature-container">
+                <img src="./assets/images/icon-sunny.webp" alt="" class="temperature-icon">
+
+                <span class="temperature">
+                  20º
+                </span>
+            </div>
+          </div> 
+
+          <dl class="weather-details-container">
+            <div class="weather-details">
+              <dt class="weather-label">Feels Like</dt>
+
+              <dd class="weather-value">18°</dd>
+            </div>
+            
+            <div class="weather-details">
+              <dt class="weather-label">Humidity</dt>
+
+              <dd class="weather-value">46%</dd>
+            </div>
+            
+            <div class="weather-details">
+              <dt class="weather-label">Wind</dt>
+
+              <dd class="weather-value">14 km/h</dd>
+            </div>
+            
+            <div class="weather-details">
+              <dt class="weather-label">Precipitation</dt>
+
+              <dd class="weather-value">0 mm</dd>
+            </div>
+          </dl>
         </div>
 
         <div class="daily-forecast-container">
