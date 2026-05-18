@@ -52,6 +52,7 @@
   --spacing-400: 2rem;
   --spacing-500: 2.5rem;
   --spacing-600: 3rem;
+  --spacing-750: 3.75rem;
   --spacing-800: 4rem;
   --spacing-1000: 5rem;
   --spacing-1200: 6rem;
@@ -80,7 +81,7 @@
 
 body {
   background: var(--neutral-900);
-  padding: var(--spacing-200) var(--spacing-200) 0;
+  padding: var(--spacing-200) var(--spacing-200) var(--spacing-600);
 
   display: flex;
   flex-direction: column;
@@ -145,6 +146,7 @@ body {
 
   width: 100%;
   padding: var(--spacing-200) var(--spacing-300);
+  padding-left: var(--spacing-600);
 
   font: var(--text-preset-5-medium);
   color: var(--neutral-200);
@@ -154,7 +156,7 @@ body {
   font: var(--text-preset-5-medium);
   color: var(--neutral-200);
 
-  text-align: center;
+  text-align: left;
 }
 
 .input-btn {
@@ -248,7 +250,7 @@ body {
   color: var(--neutral-0);
 }
 
-/* Weather Details */
+/* Left - Weather Details */
 
 .weather-details-container {
   display: grid;
@@ -281,6 +283,100 @@ body {
 
 /* Left - Daily */
 
+.daily-forecast-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+}
+
+.daily-title {
+  font: var(--text-preset-5);
+  color: var(--neutral-0);
+}
+
+.daily-forecast {
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: var(--spacing-200);
+}
+
+.day {
+  background: var(--neutral-800);
+
+  padding: var(--spacing-125) var(--spacing-200);
+  border-radius: var(--radius-12);
+
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.week-day {
+  font: var(--text-preset-6);
+  color: var(--neutral-0);
+}
+
+.weather-icon img {
+  width: var(--spacing-750);
+  height: var(--spacing-750);
+}
+
+.temperature-range {
+  font: var(--text-preset-7);
+
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch; /* Important to learn */
+}
+
+.max {
+  color: var(--neutral-0);
+}
+
+.min {
+  color: var(--neutral-200);
+}
+
+/* Hourly forecast */
+.hourly-forecast-container {
+
+}
+
+.hourly-header {
+
+}
+
+.hourly-title {
+
+}
+
+.hourly-day-btn {
+
+}
+
+.hourly-list {
+
+}
+
+.card {
+
+}
+
+.icon-hour-wrapper {
+
+}
+
+.hour {
+
+}
+
+.temperature-hour {
+
+}
 /* Hide content */
 .visually-hidden {
   position: absolute;
