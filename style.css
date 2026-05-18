@@ -184,8 +184,10 @@ body {
 
 /* Content Container - Left & Hourly Container */
 
-.content-contaier {
-
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap:var(--spacing-400);
 }
 
 .left-content {
@@ -343,39 +345,93 @@ body {
 
 /* Hourly forecast */
 .hourly-forecast-container {
+  background: var(--neutral-800);
+  border-radius: var(--radius-20);
 
+  padding: var(--spacing-200) var(--spacing-250);
+
+  max-height: 685px;
+  overflow: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
 }
 
 .hourly-header {
-
+  display: flex;
+  gap: var(--spacing-500);
 }
 
 .hourly-title {
+  font: var(--text-preset-5);
+  color: var(--neutral-0);
 
+  display: flex;
+  align-items: center;
 }
 
 .hourly-day-btn {
+  font: var(--text-preset-7);
+  color: var(--neutral-0);
 
+  background: var(--neutral-600);
+  border: none;
+  border-radius: var(--radius-8);
+
+  padding: var(--spacing-100) var(--spacing-200);
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
+
+.day-btn {
+
+}
+
+.hourly-day-btn img {
+  width: var(--spacing-150);
+  height: var(--spacing-250);
 }
 
 .hourly-list {
-
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-200);
 }
 
 .card {
+  background: var(--neutral-700);
+  border: 1px solid var(--neutral-600);
+  border-radius: var(--radius-8);
 
+  padding: var(--spacing-125) var(--spacing-200)  var(--spacing-125) var(--spacing-150);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icon-hour-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-100);
+}
 
+.icon-hour-wrapper img {
+  width: var(--spacing-500);
+  height: var(--spacing-500);
 }
 
 .hour {
-
+  font: var(--text-preset-5-medium);
+  color: var(--neutral-0);
 }
 
 .temperature-hour {
-
+  font: var(--text-preset-7);
+  color: var(--neutral-0);
 }
 /* Hide content */
 .visually-hidden {
