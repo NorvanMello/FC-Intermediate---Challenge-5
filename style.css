@@ -182,6 +182,51 @@ body {
   padding: var(--spacing-200) var(--spacing-300);
 }
 
+/* Input Dropdown */
+.input-dropdown {
+  background: var(--neutral-800);
+  border: 1px solid var(--neutral-700);
+  border-radius: var(--radius-12);
+
+  padding: var(--spacing-100);
+  width: 100%;
+
+  margin-top: var(--spacing-125);
+  position: absolute;
+
+  z-index: 999;
+
+  display: none;
+}
+
+.search-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-050);
+}
+
+.city-option {
+
+}
+
+.city {
+  background: none;
+  width: 100%;
+  border: none;
+
+  font: var(--text-preset-7);
+  color: var(--neutral-0);
+  text-align: left;
+
+  padding: var(--spacing-100) var(--spacing-125);
+}
+
+.city:hover {
+  background: var(--neutral-700);
+  border: 1px solid var(--spacing-600);
+  border-radius: var(--radius-8);
+}
+
 /* Content Container - Left & Hourly Container */
 
 .content-container {
@@ -361,6 +406,8 @@ body {
 .hourly-header {
   display: flex;
   gap: var(--spacing-500);
+  
+  position: relative;
 }
 
 .hourly-title {
@@ -386,15 +433,36 @@ body {
   gap: var(--spacing-100);
 }
 
-.day-btn {
-
-}
-
 .hourly-day-btn img {
   width: var(--spacing-150);
   height: var(--spacing-250);
 }
 
+/* Dropdown */
+.hourly-days-container {
+  background: var(--neutral-800);
+  border: 1px solid var(--neutral-600);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-125);
+  
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--spacing-125));
+}
+
+.weekday-dropdown {
+  padding: var(--spacing-125) var(--spacing-100);
+}
+
+.weekday {
+  font: var(--text-preset-7);
+  color: var(--neutral-0);
+  list-style-type: none;
+}
+
+/* Hour List */
 .hourly-list {
   display: flex;
   flex-direction: column;
