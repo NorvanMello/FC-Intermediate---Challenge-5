@@ -123,10 +123,80 @@ body {
 
 .units-dropdown {
   background: var(--neutral-800);
+  border: 1px solid var(--neutral-600);
+  border-radius: var(--radius-12);
+ 
+  width: 214px;
+
+  padding: var(--spacing-075) var(--spacing-100);
+
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing-025));
 
   position: absolute;
   right: 0;
   top: calc(100% + var(--spacing-125));
+
+  z-index: 999;
+}
+
+.units-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.units-container:nth-child(3)::before {
+  content: "";
+  background: var(--neutral-600);
+  width: 100%;
+  height: 1px;
+}
+
+.units-container:nth-child(3)::after {
+  content: "";
+  background: var(--neutral-600);
+  width: 100%;
+  height: 1px;
+}
+
+.unit-title {
+  font: var(--text-preset-8);
+  color: var(--neutral-300);
+
+  padding: var(--spacing-075) var(--spacing-100) 0 var(--spacing-100);
+
+  margin-bottom: var(--spacing-100);
+}
+
+.unit {
+  font: var(--text-preset-7);
+  color: var(--neutral-0);
+
+  text-align: left;
+
+  padding: var(--spacing-125) var(--spacing-100);
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.unit.active {
+  background: var(--neutral-700);
+  border-radius: var(--spacing-100);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.check-img {
+  display: none;
+}
+
+.check-img.active {
+  display: block;
 }
 
 
@@ -241,6 +311,18 @@ body {
   border-radius: var(--radius-8);
 }
 
+/* Input - Not Found */
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-results-message {
+  font: var(--text-preset-4);
+  color: var(--neutral-0);
+}
+
 /* Content Container - Left & Hourly Container */
 
 .content-container {
@@ -350,16 +432,22 @@ body {
   gap: var(--spacing-250);
 }
 
+.daily-list {
+  list-style: none;
+
+  display: grid;
+  grid-template-columns:1fr 1fr 1fr ;
+  /* grid-template-rows: 1fr 1fr 1fr; */
+  gap: var(--spacing-200);
+}
+
 .daily-title {
   font: var(--text-preset-5);
   color: var(--neutral-0);
 }
 
 .daily-forecast {
-  display: grid;
-  grid-template-columns:1fr 1fr 1fr ;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: var(--spacing-200);
+
 }
 
 .day {
@@ -367,8 +455,6 @@ body {
 
   padding: var(--spacing-125) var(--spacing-200);
   border-radius: var(--radius-12);
-
-  list-style-type: none;
 
   display: flex;
   flex-direction: column;
@@ -381,7 +467,7 @@ body {
   color: var(--neutral-0);
 }
 
-.weather-icon img {
+.weather-icon {
   width: var(--spacing-750);
   height: var(--spacing-750);
 }
