@@ -15,13 +15,17 @@
       <img class="logo" src="./assets/images/logo.svg" alt="">
 
       <div class="units-wrapper">
-        <button class="settings-btn">
+        <button 
+        class="settings-btn"
+        aria-label="Select Unit"
+        aria-controls="select-unit"
+        aria-expanded="false">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 16 16"><path fill="#fff" d="M14.125 7.406c.031.407.031.813 0 1.188l1 .594a.74.74 0 0 1 .344.843c-.344 1.313-1.063 2.5-2 3.469-.25.219-.625.281-.906.125l-1-.594c-.25.188-.72.469-1.032.594v1.156a.733.733 0 0 1-.562.719A7.765 7.765 0 0 1 6 15.5c-.313-.063-.563-.406-.563-.719v-1.156a5.54 5.54 0 0 1-1.03-.594l-1 .594c-.282.156-.657.094-.907-.125-.938-.969-1.656-2.156-2-3.469a.74.74 0 0 1 .344-.844l1-.593c-.032-.156-.032-.406-.032-.594 0-.156 0-.406.032-.594l-1-.562A.74.74 0 0 1 .5 6c.344-1.313 1.063-2.5 2-3.469.25-.219.625-.281.906-.125l1 .594c.25-.188.719-.469 1.032-.594V1.25c0-.344.218-.625.562-.719a7.766 7.766 0 0 1 3.969 0c.312.063.562.406.562.719v1.156c.313.125.781.406 1.031.594l1-.594c.282-.156.657-.094.907.125.937.969 1.656 2.156 2 3.469a.74.74 0 0 1-.344.844l-1 .562Zm-1.656 2c.25-1.312.25-1.469 0-2.781l1.375-.781c-.188-.563-.688-1.375-1.063-1.813l-1.375.782c-.969-.844-1.125-.938-2.375-1.375V1.843C8.75 1.812 8.281 1.75 8 1.75c-.313 0-.781.063-1.063.094v1.593c-1.25.438-1.375.532-2.375 1.376L3.188 4.03c-.468.532-.812 1.157-1.062 1.813l1.375.781c-.25 1.313-.25 1.469 0 2.781l-1.375.781c.188.563.688 1.376 1.063 1.813l1.374-.781c.97.844 1.125.937 2.375 1.375v1.594c.282.03.75.093 1.063.093.281 0 .75-.062 1.031-.094v-1.593c1.25-.438 1.375-.531 2.375-1.375l1.375.781c.375-.438.875-1.25 1.063-1.813l-1.375-.78ZM8 5c1.625 0 3 1.375 3 3 0 1.656-1.375 3-3 3a3 3 0 0 1-3-3c0-1.625 1.344-3 3-3Zm0 4.5A1.5 1.5 0 0 0 9.5 8c0-.813-.688-1.5-1.5-1.5A1.5 1.5 0 0 0 6.5 8c0 .844.656 1.5 1.5 1.5Z"/></svg> 
           Units
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" fill="none" viewBox="0 0 13 8"><path fill="#fff" d="M6.309 7.484 1.105 2.316c-.175-.14-.175-.421 0-.597l.704-.668a.405.405 0 0 1 .597 0l4.219 4.148 4.184-4.148c.175-.176.457-.176.597 0l.703.668c.176.176.176.457 0 .597L6.906 7.484a.405.405 0 0 1-.597 0Z"/></svg>
         </button>
 
-        <div class="units-dropdown hidden">
+        <div class="units-dropdown hidden" id="select-unit" aria-hidden="true">
           <div class="units-container metric">
             <button type="button" class="unit active">Switch to Imperial</button>
           </div>
@@ -47,24 +51,22 @@
       </div>
   </header>
 
-  <h1 class="title">
-    How’s the sky looking today?
-  </h1>
-
   <main class="main-content">
+    <h1 class="title">
+      How’s the sky looking today?
+    </h1>
     
     <form class="search-container">
-      <label class="visually-hidden" for="search-input">
-        Search for a place.
-      </label>
-
       <div class="input-wrapper">
+        <label class="visually-hidden" for="search-input">
+          Search for a place.
+        </label>
         <input type="search" id="search-input" placeholder="Search for a place...">
         <button type="submit" class="input-btn">
           <img src="./assets/images/icon-search.svg" alt="" class="search-icon">
         </button>
 
-        <div class="input-dropdown hidden">
+        <div class="input-dropdown hidden" aria-hidden="true">
           <ul class="search-dropdown">
             <li class="city-option">
               <button class="city">City Name</button>
@@ -88,8 +90,13 @@
       <button type="submit" class="search-btn">Search</button>
     </form>
 
-    <div class="content-container">
+    <div class="not-found hidden" aria-hidden="true">
+      <p class="no-results-message" aria-live="polite">
+        No search result found!
+      </p>
+    </div>
 
+    <div class="content-container" aria-hidden="false">
       <div class="left-content">
 
         <div class="weather-info-container">
@@ -144,82 +151,82 @@
           <h2 class="daily-title">Daily forecast</h2>
 
           <div class="daily-forecast">
-            <ul class="day">
-              <li class="week-day">
-                Tue
-              </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-rain.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">20°</span>
-                <span class="min">14°</span>
-              </li>
-
-              <li class="week-day">
-                Wed
-              </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-drizzle.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">21°</span>
-                <span class="min">15°</span>
+            <ul class="daily-list">
+              <li class="day">
+                <span class="week-day">
+                  Tue
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-rain.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">20°</span>
+                  <span class="min">14°</span>
+                </span>
               </li>
 
-              <li class="week-day">
-                Thu
-              </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-sunny.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">24°</span>
-                <span class="min">14°</span>
-              </li>
-
-              <li class="week-day">
-                Fri
-              </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-partly-cloudy.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">25°</span>
-                <span class="min">13°</span>
+              <li class="day">
+                <span class="week-day">
+                  Wed
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-drizzle.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">21°</span>
+                  <span class="min">15°</span>
+                </span>
               </li>
 
-              <li class="week-day">
-                Sat
+              <li class="day">
+                <span class="week-day">
+                  Thu
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-sunny.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">24°</span>
+                  <span class="min">14°</span>
+                </span>
               </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-storm.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">21°</span>
-                <span class="min">15°</span>
+            
+              <li class="day">
+                <span class="week-day">
+                  Fri
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-partly-cloudy.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">25°</span>
+                  <span class="min">13°</span>
+                </span>
               </li>
 
-              <li class="week-day">
-                Sun
-              </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-snow.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">25°</span>
-                <span class="min">16°</span>
+              <li class="day">
+                <span class="week-day">
+                  Sat
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-storm.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">21°</span>
+                  <span class="min">15°</span>
+                </span>
               </li>
 
-              <li class="week-day">
-                Mon
+              <li class="day">
+                <span class="week-day">
+                  Sun
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-snow.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">25°</span>
+                  <span class="min">16°</span>
+                </span>
               </li>
-              <li class="weather-icon">
-                <img src="./assets/images/icon-fog.webp" alt="">
-              </li>
-              <li class="temperature-range">
-                <span class="max">24°</span>
-                <span class="min">15°</span>
+
+              <li class="day">
+                <span class="week-day">
+                  Mon
+                </span>
+                <img class="weather-icon" src="./assets/images/icon-fog.webp" alt="">
+                <span class="temperature-range">
+                  <span class="max">24°</span>
+                  <span class="min">15°</span>
+                </span>
               </li>
             </ul>
           </div>
@@ -236,34 +243,34 @@
               <img src="./assets/images/icon-dropdown.svg" alt="">
             </button>
 
-            <div class="hourly-days-container">
+            <div class="hourly-days-container hidden">
               <ul class="weekday-dropdown">
                 <li class="weekday">
                   <button class="weekday-btn">Monday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Tuesday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Wednesday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Thursday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Friday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Saturday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button class="weekday-btn">Sunday</button>
                 </li>
               </ul>
             </div>
