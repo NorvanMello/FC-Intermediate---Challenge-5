@@ -16,6 +16,7 @@
 
       <div class="units-wrapper">
         <button 
+        type="button"
         class="settings-btn"
         aria-label="Select Unit"
         aria-controls="select-unit"
@@ -25,27 +26,27 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" fill="none" viewBox="0 0 13 8"><path fill="#fff" d="M6.309 7.484 1.105 2.316c-.175-.14-.175-.421 0-.597l.704-.668a.405.405 0 0 1 .597 0l4.219 4.148 4.184-4.148c.175-.176.457-.176.597 0l.703.668c.176.176.176.457 0 .597L6.906 7.484a.405.405 0 0 1-.597 0Z"/></svg>
         </button>
 
-        <div class="units-dropdown hidden" id="select-unit" aria-hidden="true">
+        <div class="units-dropdown" id="select-unit" aria-hidden="true">
           <div class="units-container metric">
             <button type="button" class="unit active">Switch to Imperial</button>
           </div>
 
-          <div class="units-container">
+          <div class="units-container" role="radiogroup" >
             <h3 class="unit-title">temperature</h3>
-            <button class="unit active">Celsius (&degC) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
-            <button class="unit">Fahrenheit (&degF) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit active" aria-checked="true">Celsius (&degC) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit" aria-checked="false">Fahrenheit (&degF) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
 
-          <div class="units-container">
+          <div class="units-container" role="radiogroup">
             <h3 class="unit-title">Wind Speed</h3>
-            <button class="unit active">km/h <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
-            <button class="unit">mph <img class="check-img " src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit active" aria-checked="true">km/h <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit" aria-checked="false">mph <img class="check-img " src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
 
-          <div class="units-container">
+          <div class="units-container" role="radiogroup">
             <h3 class="unit-title">Precipitation</h3>
-            <button class="unit active">Millimeters(mm) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
-            <button class="unit">Inches(in) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit active" aria-checked="true">Millimeters(mm) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
+            <button role="radio" class="unit" aria-checked="false">Inches(in) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
         </div>
       </div>
@@ -61,27 +62,50 @@
         <label class="visually-hidden" for="search-input">
           Search for a place.
         </label>
-        <input type="search" id="search-input" placeholder="Search for a place...">
-        <button type="submit" class="input-btn">
+        <input type="search" id="search-input" placeholder="Search for a place..." role="combobox" aria-controls="city-dropdown" aria-expanded="false"  aria-autocomplete="list" >
+        <!-- 
+          Do later in JS
+
+          Add this ARIA attribute dynamically.
+          This fixed value is only for visual/testing purposes.
+          aria-activedescendant="city-option-1"
+
+          Add this ARIA attribute dynamically
+          to indicate that the user input is invalid.
+          aria-invalid="false"
+
+          Add this ARIA attribute dynamically
+          to connect the error message to the input.
+          aria-describedby="no-result"
+        -->
+
+        <button type="submit" class="input-btn" aria-label="Search for a city">
           <img src="./assets/images/icon-search.svg" alt="" class="search-icon">
         </button>
 
-        <div class="input-dropdown hidden" aria-hidden="true">
-          <ul class="search-dropdown">
-            <li class="city-option">
-              <button class="city">City Name</button>
+        <div class="input-dropdown hidden" id="city-dropdown" aria-hidden="true">
+          <ul class="search-dropdown" role="listbox">
+            <li class="city-option" id="city-option-1" role="option">
+              City Name
             </li>
 
-            <li class="city-option">
-              <button class="city">City Name</button>
+            <!-- 
+            Do later in JS
+
+            communicate the selection state of the option
+            aria-selected
+            -->
+
+           <li class="city-option" id="city-option-2" role="option">
+              City Name
             </li>
 
-            <li class="city-option">
-              <button class="city">City Name</button>
+            <li class="city-option" id="city-option-3" role="option">
+              City Name
             </li>
 
-            <li class="city-option">
-              <button class="city">City Name</button>
+            <li class="city-option" id="city-option-4" role="option">
+              City Name
             </li>
           </ul>
         </div>
@@ -91,12 +115,17 @@
     </form>
 
     <div class="not-found hidden" aria-hidden="true">
-      <p class="no-results-message" aria-live="polite">
+      <p class="no-results-message" id="no-result" aria-live="polite">
         No search result found!
       </p>
     </div>
 
-    <div class="content-container" aria-hidden="false">
+    <div class="content-container">
+      <!-- 
+        Do later in JS
+
+        aria-hidden="true" - Hide the content when error message show up
+      -->
       <div class="left-content">
 
         <div class="weather-info-container">
@@ -112,7 +141,7 @@
               </div>
 
               <div class="temperature-container">
-                <img src="./assets/images/icon-sunny.webp" alt="" class="temperature-icon">
+                <img src="./assets/images/icon-sunny.webp" alt="Sunny" class="temperature-icon">
 
                 <span class="temperature">
                   20º
@@ -156,7 +185,7 @@
                 <span class="week-day">
                   Tue
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-rain.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-rain.webp" alt="Rain">
                 <span class="temperature-range">
                   <span class="max">20°</span>
                   <span class="min">14°</span>
@@ -167,7 +196,7 @@
                 <span class="week-day">
                   Wed
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-drizzle.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-drizzle.webp" alt="Drizzel">
                 <span class="temperature-range">
                   <span class="max">21°</span>
                   <span class="min">15°</span>
@@ -178,7 +207,7 @@
                 <span class="week-day">
                   Thu
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-sunny.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-sunny.webp" alt="Sunny">
                 <span class="temperature-range">
                   <span class="max">24°</span>
                   <span class="min">14°</span>
@@ -189,7 +218,7 @@
                 <span class="week-day">
                   Fri
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-partly-cloudy.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-partly-cloudy.webp" alt="Partly Cloudy">
                 <span class="temperature-range">
                   <span class="max">25°</span>
                   <span class="min">13°</span>
@@ -200,7 +229,7 @@
                 <span class="week-day">
                   Sat
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-storm.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-storm.webp" alt="Storm">
                 <span class="temperature-range">
                   <span class="max">21°</span>
                   <span class="min">15°</span>
@@ -211,7 +240,7 @@
                 <span class="week-day">
                   Sun
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-snow.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-snow.webp" alt="Snow">
                 <span class="temperature-range">
                   <span class="max">25°</span>
                   <span class="min">16°</span>
@@ -222,7 +251,7 @@
                 <span class="week-day">
                   Mon
                 </span>
-                <img class="weather-icon" src="./assets/images/icon-fog.webp" alt="">
+                <img class="weather-icon" src="./assets/images/icon-fog.webp" alt="Fog">
                 <span class="temperature-range">
                   <span class="max">24°</span>
                   <span class="min">15°</span>
@@ -238,39 +267,44 @@
           <h2 class="hourly-title">Hourly forecast</h2>
 
           <div class="btn-container">
-            <button class="hourly-day-btn">
+            <button type="button" class="hourly-day-btn" aria-controls="weekdays" aria-expanded="false">
               <span class="day-btn">Tuesday</span>
               <img src="./assets/images/icon-dropdown.svg" alt="">
             </button>
 
-            <div class="hourly-days-container hidden">
-              <ul class="weekday-dropdown">
+            <div class="hourly-days-container hidden" aria-hidden="true">
+              <ul class="weekday-dropdown" id="weekdays">
+                <!-- 
+                  Do later in JS
+
+                  aria-current - indicates which item in a group is currently active/current
+                -->
                 <li class="weekday">
-                  <button class="weekday-btn">Monday</button>
+                  <button type="button" class="weekday-btn">Monday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Tuesday</button>
+                  <button type="button" class="weekday-btn">Tuesday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Wednesday</button>
+                  <button type="button" class="weekday-btn">Wednesday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Thursday</button>
+                  <button type="button" class="weekday-btn">Thursday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Friday</button>
+                  <button type="button" class="weekday-btn">Friday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Saturday</button>
+                  <button type="button" class="weekday-btn">Saturday</button>
                 </li>
 
                 <li class="weekday">
-                  <button class="weekday-btn">Sunday</button>
+                  <button type="button" class="weekday-btn">Sunday</button>
                 </li>
               </ul>
             </div>
@@ -278,9 +312,17 @@
         </div>
           
         <ul class="hourly-list">
+
+          <!-- 
+          Do in JS later
+          
+          aria-live="polite" - Add a dynamic message informing about the change of day.
+          For instance:
+          Hourly forecast updated for Tuesday
+          -->
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -344,7 +386,7 @@
         
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -352,7 +394,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -360,7 +402,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -368,7 +410,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -376,7 +418,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -384,7 +426,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -392,7 +434,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -400,7 +442,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -408,7 +450,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -416,7 +458,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -424,7 +466,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -432,7 +474,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -440,7 +482,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -448,7 +490,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -456,7 +498,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
@@ -464,7 +506,7 @@
 
           <li class="card">
             <div class="icon-hour-wrapper">
-              <img src="./assets/images/icon-overcast.webp" alt="">
+              <img src="./assets/images/icon-overcast.webp" alt="Overcast">
               <span class="hour">3 PM</span>
             </div>
             <span class="temperature-hour">20°</span>
