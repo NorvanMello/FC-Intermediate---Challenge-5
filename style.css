@@ -290,22 +290,16 @@ body {
 }
 
 .city-option {
-
-}
-
-.city {
-  background: none;
-  width: 100%;
-  border: none;
-
   font: var(--text-preset-7);
   color: var(--neutral-0);
   text-align: left;
 
   padding: var(--spacing-100) var(--spacing-125);
+
+  list-style: none;
 }
 
-.city:hover {
+.city-option:hover {
   background: var(--neutral-700);
   border: 1px solid var(--spacing-600);
   border-radius: var(--radius-8);
