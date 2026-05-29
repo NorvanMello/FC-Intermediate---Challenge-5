@@ -26,25 +26,25 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="14" fill="none" viewBox="0 0 13 8"><path fill="#fff" d="M6.309 7.484 1.105 2.316c-.175-.14-.175-.421 0-.597l.704-.668a.405.405 0 0 1 .597 0l4.219 4.148 4.184-4.148c.175-.176.457-.176.597 0l.703.668c.176.176.176.457 0 .597L6.906 7.484a.405.405 0 0 1-.597 0Z"/></svg>
         </button>
 
-        <div class="units-dropdown" id="select-unit" aria-hidden="true">
+        <div class="units-dropdown hidden" id="select-unit" aria-hidden="true">
           <div class="units-container metric">
             <button type="button" class="unit active">Switch to Imperial</button>
           </div>
 
-          <div class="units-container" role="radiogroup" >
-            <h3 class="unit-title">temperature</h3>
+          <div class="units-container" role="radiogroup" aria-labelledby="temperature-id">
+            <h3 class="unit-title" id="temperature-id">temperature</h3>
             <button role="radio" class="unit active" aria-checked="true">Celsius (&degC) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
             <button role="radio" class="unit" aria-checked="false">Fahrenheit (&degF) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
 
-          <div class="units-container" role="radiogroup">
-            <h3 class="unit-title">Wind Speed</h3>
+          <div class="units-container" role="radiogroup" aria-labelledby="wind-speed-id">
+            <h3 class="unit-title" id="wind-speed-id">Wind Speed</h3>
             <button role="radio" class="unit active" aria-checked="true">km/h <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
             <button role="radio" class="unit" aria-checked="false">mph <img class="check-img " src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
 
-          <div class="units-container" role="radiogroup">
-            <h3 class="unit-title">Precipitation</h3>
+          <div class="units-container" role="radiogroup" aria-labelledby="precipitation-id">
+            <h3 class="unit-title" id="precipitation-id">Precipitation</h3>
             <button role="radio" class="unit active" aria-checked="true">Millimeters(mm) <img class="check-img active" src="./assets/images/icon-checkmark.svg" alt=""></button>
             <button role="radio" class="unit" aria-checked="false">Inches(in) <img class="check-img" src="./assets/images/icon-checkmark.svg" alt=""></button>
           </div>
@@ -519,3 +519,15 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<!-- 
+Só deixa anotado para o JS:
+
+sincronizar .hidden com aria-hidden;
+sincronizar aria-expanded;
+atualizar aria-checked nos radios;
+adicionar/remover aria-invalid e aria-describedby;
+controlar aria-activedescendant no autocomplete;
+adicionar aria-current no dia atual;
+corrigir Drizzel para Drizzle.
+-->
