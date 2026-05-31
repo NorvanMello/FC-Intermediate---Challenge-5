@@ -4,11 +4,14 @@ import {
     renderLocation,
     renderDate,
     renderWeatherIcon,
-    renderTemperature
+    renderTemperature,
+    renderCurrentWeatherDetails,
+    renderDailyForecast
 } from "./currentWeather.js"
 
-const weatherInfoContainer = document.querySelector(".weather-info-container");
 const currentWeatherInfo = document.querySelector(".weather-info");
+const currentWeatherDetails = document.querySelector(".weather-details-container");
+const dailyList = document.querySelector(".daily-list");
 
 //API
 
@@ -22,7 +25,7 @@ const currentWeatherInfo = document.querySelector(".weather-info");
 
 
 async function init() {
-    const weatherInfo = await getWeatherInfo("manaus");
+    const weatherInfo = await getWeatherInfo("patrocinio do muriae");
 
     const locationInfo = document.createElement("div");
     locationInfo.classList.add("location-info");
@@ -45,10 +48,13 @@ async function init() {
     renderTemperature(temperatureContainer, weatherInfo);
 
     currentWeatherInfo.appendChild(temperatureContainer);
-    weatherInfoContainer.appendChild(currentWeatherInfo);
+
+    //Weather Details
+    renderCurrentWeatherDetails(currentWeatherDetails, weatherInfo);
 
     //Daily Forecast
-    
+    renderDailyForecast(dailyList, weatherInfo);
+
 }
 
 init();
