@@ -47,12 +47,101 @@ export function renderWeatherIcon(temperatureContainer, weatherInfo) {
 export function renderTemperature(temperatureContainer, weatherInfo) {
     const currentTemperature = weatherInfo;
 
-    console.log(currentTemperature.data)
-
     const temperature = document.createElement("span")
     temperature.classList.add("temperature")
 
     temperature.textContent = `${Math.round(currentTemperature.data.current.temperature_2m)}°`;
 
     temperatureContainer.appendChild(temperature);
+}
+
+function createCurrentDetailCard({ labelText, valueText }, currentWeatherDetails) {
+    const weatherDetails = document.createElement("div");
+    weatherDetails.classList.add("weather-details");
+
+    const weatherLabel = document.createElement("dt");
+    weatherLabel.classList.add("weather-label");
+    weatherLabel.textContent = labelText;
+
+    weatherDetails.appendChild(weatherLabel)
+
+    const weatherValue = document.createElement("dd");
+    weatherValue.classList.add("weather-value");
+    weatherValue.textContent = valueText;
+
+    weatherDetails.appendChild(weatherValue);
+
+    currentWeatherDetails.appendChild(weatherDetails);
+}
+
+export function renderCurrentWeatherDetails(currentWeatherDetails, weatherInfo) {
+
+    const cardValues = [
+        { 
+            labelText: "Feels like", 
+            valueText: `${Math.round(weatherInfo.data.current.apparent_temperature)}${weatherInfo.data.current_units.apparent_temperature}`
+        },
+
+        {
+            labelText: "Humidity", 
+            valueText: `${Math.round(weatherInfo.data.current.relative_humidity_2m)}%`
+        },
+
+        {
+            labelText: "Wind", 
+            valueText: `${weatherInfo.data.current.wind_speed_10m} ${weatherInfo.data.current_units.wind_speed_10m}`
+        },
+
+        {
+            labelText: "Precipitation", 
+            valueText: `${weatherInfo.data.current.precipitation} ${weatherInfo.data.current_units.precipitation}`
+        }
+    ];
+
+    cardValues.forEach(value => {
+        createCurrentDetailCard(value, currentWeatherDetails);
+    })
+}
+
+function createDailyForecastCard(dailyList, weatherInfo) {
+    const day = document.createElement("li");
+    day.classList.add("day")
+
+    const weekDay = document.createElement("span")
+    weekDay.classList.add("week-day")
+    weekDay.textContent = "Tue"
+
+    day.appendChild(weekDay)
+
+    const weatherIcon = document.createElement("img")
+    weatherIcon.classList.add("weather-icon")
+    weatherIcon.setAttribute("src","./assets/images/icon-rain.webp")
+    weatherIcon.setAttribute("alt","Rain")
+
+    day.appendChild(weatherIcon)
+
+    const temperatureRange = document.createElement("span")
+    temperatureRange.classList.add("temperature-range")
+
+    const max = document.createElement("span")
+    max.classList.add("max")
+    max.textContent = "20°"
+
+    temperatureRange.appendChild(max)
+
+    const min = document.createElement("span")
+    min.classList.add("min")
+    min.textContent = "14°"
+
+    temperatureRange.appendChild(min)
+    
+    day.appendChild(temperatureRange)
+
+    dailyList.appendChild(day)    
+}
+
+export function renderDailyForecast(dailyForecast, weatherInfo) {
+   createDailyForecastCard(dailyForecast, weatherInfo)
+   createDailyForecastCard(dailyForecast, weatherInfo)
+   createDailyForecastCard(dailyForecast, weatherInfo)
 }
