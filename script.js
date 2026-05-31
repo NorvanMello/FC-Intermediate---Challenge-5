@@ -25,7 +25,7 @@ const dailyList = document.querySelector(".daily-list");
 
 
 async function init() {
-    const weatherInfo = await getWeatherInfo("patrocinio do muriae");
+    const weatherInfo = await getWeatherInfo("patrocinio do muria");
 
     const locationInfo = document.createElement("div");
     locationInfo.classList.add("location-info");
