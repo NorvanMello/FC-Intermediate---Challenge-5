@@ -1,5 +1,5 @@
 import { weatherIconMap, weatherDescriptionMap } from "./weatherMaps.js";
-import { formatWeatherDate } from "./formatDate.js";
+import { formatWeatherDate, shortWeekDay } from "./formatDate.js";
 
 export function renderLocation(locationInfo, weatherInfo) {
 
@@ -24,18 +24,15 @@ export function renderDate(locationInfo, weatherInfo) {
 }
 
 export function renderWeatherIcon(temperatureContainer, weatherInfo) {
-    const icon = weatherInfo;
-    
-    
 
     const img = document.createElement("img")
     img.classList.add("temperature-icon")
 
-    const weatherCode = icon.data.current.weather_code;
+    const weatherCode = weatherInfo.data.current.weather_code;
 
     const iconName = weatherIconMap[weatherCode] ?? "icon-error-weather.png";
-
     const iconFile = `./assets/images/${iconName}`;
+    
     const description = weatherDescriptionMap[weatherCode] ?? "Unknown weather";
 
     img.setAttribute("src", iconFile)
@@ -103,20 +100,26 @@ export function renderCurrentWeatherDetails(currentWeatherDetails, weatherInfo) 
     })
 }
 
-function createDailyForecastCard(dailyList, weatherInfo) {
+function createDailyForecastCard(dailyList, i, { weekday, icon, temMax, temMin }) {
     const day = document.createElement("li");
     day.classList.add("day")
 
     const weekDay = document.createElement("span")
     weekDay.classList.add("week-day")
-    weekDay.textContent = "Tue"
+    weekDay.textContent = `${shortWeekDay(weekday[i])}`
 
     day.appendChild(weekDay)
 
     const weatherIcon = document.createElement("img")
     weatherIcon.classList.add("weather-icon")
-    weatherIcon.setAttribute("src","./assets/images/icon-rain.webp")
-    weatherIcon.setAttribute("alt","Rain")
+
+    const iconName = weatherIconMap[icon[i]] ?? "icon-error-weather.png";
+    const iconFile = `./assets/images/${iconName}`;
+    
+    const description = weatherDescriptionMap[icon[i]] ?? "Unknown weather";
+
+    weatherIcon.setAttribute("src",`./assets/images/${iconName}`)
+    weatherIcon.setAttribute("alt",`${description}`)
 
     day.appendChild(weatherIcon)
 
@@ -125,13 +128,13 @@ function createDailyForecastCard(dailyList, weatherInfo) {
 
     const max = document.createElement("span")
     max.classList.add("max")
-    max.textContent = "20°"
+    max.textContent = `${Math.round(temMax[i])}`
 
     temperatureRange.appendChild(max)
 
     const min = document.createElement("span")
     min.classList.add("min")
-    min.textContent = "14°"
+    min.textContent = `${Math.round(temMin[i])}`
 
     temperatureRange.appendChild(min)
     
@@ -140,8 +143,15 @@ function createDailyForecastCard(dailyList, weatherInfo) {
     dailyList.appendChild(day)    
 }
 
-export function renderDailyForecast(dailyForecast, weatherInfo) {
-   createDailyForecastCard(dailyForecast, weatherInfo)
-   createDailyForecastCard(dailyForecast, weatherInfo)
-   createDailyForecastCard(dailyForecast, weatherInfo)
+export function renderDailyForecast(dailyList, weatherInfo) {
+
+    for(let i = 0; i < weatherInfo.data.daily.time.length; i++) {
+        createDailyForecastCard(dailyList, i, 
+        { 
+            weekday: weatherInfo.data.daily.time,
+            icon: weatherInfo.data.daily.weather_code,
+            temMax: weatherInfo.data.daily.temperature_2m_max,
+            temMin: weatherInfo.data.daily.temperature_2m_min 
+        })
+    }
 }
