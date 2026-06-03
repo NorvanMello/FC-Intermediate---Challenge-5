@@ -1,5 +1,5 @@
 import { weatherIconMap, weatherDescriptionMap } from "./weatherMaps.js";
-import { formatWeatherDate, shortWeekDay } from "./formatDate.js";
+import { formatWeatherDate, shortWeekDay, hourOfDay } from "./formatDate.js";
 
 export function renderLocation(locationInfo, weatherInfo) {
 
@@ -154,4 +154,52 @@ export function renderDailyForecast(dailyList, weatherInfo) {
             temMin: weatherInfo.data.daily.temperature_2m_min 
         })
     }
+}
+
+function createHourlyForecastCard(hourlyList, weatherInfo, j) {
+     const card = document.createElement("li");
+    card.classList.add("card");
+
+    const iconHourWeapper = document.createElement("div");
+    iconHourWeapper.classList.add("icon-hour-wrapper");
+
+    const hourlyIcon = document.createElement("img");
+
+    const iconName = weatherIconMap[weatherInfo.data.hourly.weather_code[j]] ?? "icon-error-weather.png";
+    const iconFile = `./assets/images/${iconName}`;
+
+    hourlyIcon.setAttribute("src", iconFile)
+
+    iconHourWeapper.appendChild(hourlyIcon);
+
+    const hour = document.createElement("span");
+    hour.classList.add("hour");
+
+    hour.textContent = hourOfDay(weatherInfo.data.hourly.time[j]);
+
+    iconHourWeapper.appendChild(hour);
+    
+    card.appendChild(iconHourWeapper);
+
+    const temperatureHour = document.createElement("span");
+    temperatureHour.classList.add("temperature-hour");
+    temperatureHour.textContent = `${Math.round(weatherInfo.data.hourly.temperature_2m[j])}${weatherInfo.data.hourly_units.temperature_2m}`
+
+    card.appendChild(temperatureHour);
+
+    hourlyList.appendChild(card)
+}
+
+export function renderHourlyForecast(hourlyList, weatherInfo) {
+
+    const userChoice = "Mon";
+
+    for(let i=0; i < 7; i++) {
+        if(userChoice === shortWeekDay(weatherInfo.data.hourly.time[i * 24])) {
+            for(let j=i * 24; j < (i*24) + 24; j++) {
+                createHourlyForecastCard(hourlyList, weatherInfo, j)
+            }
+            break;
+        }
+    }    
 }
