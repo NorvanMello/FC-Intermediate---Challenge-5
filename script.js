@@ -6,12 +6,14 @@ import {
     renderWeatherIcon,
     renderTemperature,
     renderCurrentWeatherDetails,
-    renderDailyForecast
+    renderDailyForecast,
+    renderHourlyForecast
 } from "./currentWeather.js"
 
 const currentWeatherInfo = document.querySelector(".weather-info");
 const currentWeatherDetails = document.querySelector(".weather-details-container");
 const dailyList = document.querySelector(".daily-list");
+const hourlyList = document.querySelector(".hourly-list")
 
 //API
 
@@ -26,6 +28,7 @@ const dailyList = document.querySelector(".daily-list");
 
 async function init() {
     const weatherInfo = await getWeatherInfo("sao paulo");
+    console.log(weatherInfo)
 
     const locationInfo = document.createElement("div");
     locationInfo.classList.add("location-info");
@@ -54,6 +57,9 @@ async function init() {
 
     //Daily Forecast
     renderDailyForecast(dailyList, weatherInfo);
+
+    //Hourly Forecast
+    renderHourlyForecast(hourlyList, weatherInfo);
 
 }
 
