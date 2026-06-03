@@ -24,3 +24,13 @@ export function shortWeekDay(isoDate) {
 
     return parsedDate.toLocaleString("en-Us", options);
 }
+
+export function hourOfDay(isoDate) {
+    const hourStr = isoDate.slice(11,13);
+    const hourNum = Number(hourStr);
+    
+    const ampm = hourNum >= 12 ? "PM" : "AM";
+    const hour12 = hourNum % 12 || 12;
+
+    return `${hour12} ${ampm}`;
+}
