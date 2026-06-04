@@ -9,22 +9,21 @@ import {
     renderDailyForecast,
     renderHourlyForecast
 } from "./currentWeather.js"
+import { hourlyForecastEvent } from "./hourlyForecastEvents.js";
 
 const currentWeatherInfo = document.querySelector(".weather-info");
 const currentWeatherDetails = document.querySelector(".weather-details-container");
 const dailyList = document.querySelector(".daily-list");
-const hourlyList = document.querySelector(".hourly-list")
+const hourlyList = document.querySelector(".hourly-list");
 
-//API
+//Buttons
 
-// Left Content
-
-// Weather Info Container
-
-// Location Info
-
-// Functions
-
+//Hourly Foracast
+const hourlyDayBtn = document.querySelector(".hourly-day-btn");
+const hourlyDaysContainer = document.querySelector(".hourly-days-container");
+// const weekDropdown = document.querySelector(".weekday-dropdown");
+const weekdayBtn = document.querySelectorAll(".weekday-btn")
+const dayBtn = document.querySelector(".day-btn")
 
 async function init() {
     const weatherInfo = await getWeatherInfo("sao paulo");
@@ -61,6 +60,11 @@ async function init() {
     //Hourly Forecast
     renderHourlyForecast(hourlyList, weatherInfo);
 
+    //Events
+
+    //Hourly Foracast
+    
+    hourlyForecastEvent(hourlyDayBtn, hourlyDaysContainer, weekdayBtn, dayBtn, hourlyList, weatherInfo);
 }
 
 init();
