@@ -190,9 +190,13 @@ function createHourlyForecastCard(hourlyList, weatherInfo, j) {
     hourlyList.appendChild(card)
 }
 
-export function renderHourlyForecast(hourlyList, weatherInfo) {
+export function renderHourlyForecast(hourlyList, weatherInfo, weekdayChoice) {
 
-    const userChoice = "Mon";
+    let userChoice = weekdayChoice;
+
+    if(userChoice === undefined) {
+        userChoice = "Mon"
+    }
 
     for(let i=0; i < 7; i++) {
         if(userChoice === shortWeekDay(weatherInfo.data.hourly.time[i * 24])) {
