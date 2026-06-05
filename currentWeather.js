@@ -43,10 +43,11 @@ export function renderWeatherIcon(temperatureContainer, weatherInfo) {
 
 export function renderTemperature(temperatureContainer, weatherInfo) {
     const currentTemperature = weatherInfo;
+    
 
     const temperature = document.createElement("span")
     temperature.classList.add("temperature")
-
+    temperature.textContent = "";
     temperature.textContent = `${Math.round(currentTemperature.data.current.temperature_2m)}°`;
 
     temperatureContainer.appendChild(temperature);
@@ -157,7 +158,8 @@ export function renderDailyForecast(dailyList, weatherInfo) {
 }
 
 function createHourlyForecastCard(hourlyList, weatherInfo, j) {
-     const card = document.createElement("li");
+
+    const card = document.createElement("li");
     card.classList.add("card");
 
     const iconHourWeapper = document.createElement("div");
@@ -191,13 +193,13 @@ function createHourlyForecastCard(hourlyList, weatherInfo, j) {
 }
 
 export function renderHourlyForecast(hourlyList, weatherInfo, weekdayChoice) {
-
+    hourlyList.textContent = ""
     let userChoice = weekdayChoice;
-
+   
     if(userChoice === undefined) {
-        userChoice = "Mon"
+        userChoice = shortWeekDay(weatherInfo.data.hourly.time[0])
     }
-
+    
     for(let i=0; i < 7; i++) {
         if(userChoice === shortWeekDay(weatherInfo.data.hourly.time[i * 24])) {
             for(let j=i * 24; j < (i*24) + 24; j++) {
