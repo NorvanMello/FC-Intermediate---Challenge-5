@@ -42,14 +42,20 @@ export function renderWeatherIcon(temperatureContainer, weatherInfo) {
 }
 
 export function renderTemperature(temperatureContainer, weatherInfo) {
-    const currentTemperature = weatherInfo;
+    console.dir(temperatureContainer)
+    let temperature = temperatureContainer.querySelector(".temperature")
+    const temperatureText = `${Math.round(weatherInfo.data.current.temperature_2m)}°`;
+
+    console.log(temperature)
+    if(temperature) {
+        temperature.textContent = temperatureText;
+        return;
+    }
     
-
-    const temperature = document.createElement("span")
-    temperature.classList.add("temperature")
-    temperature.textContent = "";
-    temperature.textContent = `${Math.round(currentTemperature.data.current.temperature_2m)}°`;
-
+    temperature = document.createElement("span");
+    temperature.classList.add("temperature");
+    temperature.textContent = temperatureText;
+    
     temperatureContainer.appendChild(temperature);
 }
 
