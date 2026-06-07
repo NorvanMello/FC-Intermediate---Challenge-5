@@ -1,4 +1,13 @@
 import { getWeatherInfo } from "./weatherAPI.js"
+import {
+    renderLocation,
+    renderDate,
+    renderWeatherIcon,
+    renderTemperature,
+    renderCurrentWeatherDetails,
+    renderDailyForecast,
+    renderHourlyForecast
+} from "./currentWeather.js"
 
 function toggleUnitsContainer(unitsDropdown) {
     unitsDropdown.classList.toggle("hidden");
@@ -10,14 +19,19 @@ function toggleUnitsContainer(unitsDropdown) {
     unitsDropdown.setAttribute("aria-hidden", "true");
 }
 
-function imperialMetricSwticher(metricImperial) {
-    console.log (metricImperial === "Switch to Imperial")
-    if(metricImperial === "Switch to Imperial") {
-        getWeatherInfo("patrocinio do muriaé", "&temperature_unit=fahrenheit")
+async function imperialMetricSwticher(metricImperial, temperatureContainer) {
+    if(metricImperial === "Switch to Metric") {
+       const weatherInfoMetric = await getWeatherInfo("patrocínio do muriaé", "&temperature_unit=fahrenheit");
+
+        renderTemperature(temperatureContainer, weatherInfoMetric);
+    } else {
+        const weatherInfoMetric = await getWeatherInfo("patrocínio do muriaé", "");
+
+        renderTemperature(temperatureContainer, weatherInfoMetric);
     }
 }
 
-export function unitSwticherEvent(settingsBtn,unitsDropdown, unit) {
+export function unitSwticherEvent(settingsBtn,unitsDropdown, unit, temperatureContainer) {
     settingsBtn.addEventListener("click", () => {
         toggleUnitsContainer(unitsDropdown);
     })
@@ -25,8 +39,8 @@ export function unitSwticherEvent(settingsBtn,unitsDropdown, unit) {
     unit.forEach(element => {
         element.addEventListener("click", (e) => {
             e.target.innerText === "Switch to Imperial" ?  e.target.innerText = "Switch to Metric" : e.target.innerText = "Switch to Imperial"
-            console.log(e.target.innerText)
-            imperialMetricSwticher(e.target.innerText)
+
+            imperialMetricSwticher(e.target.innerText, temperatureContainer)
         })
     });
     
