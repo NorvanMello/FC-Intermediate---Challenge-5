@@ -31,7 +31,7 @@ const weekdayBtn = document.querySelectorAll(".weekday-btn")
 const dayBtn = document.querySelector(".day-btn")
 
 async function init() {
-    const weatherInfo = await getWeatherInfo("patrocinio do muriaé");
+    const weatherInfo = await getWeatherInfo("patrocínio do muriaé");
     console.log(weatherInfo)
 
     const locationInfo = document.createElement("div");
@@ -72,7 +72,7 @@ async function init() {
      Events
     ========================= */
     //Units Btn
-    unitSwticherEvent(settingsBtn,unitsDropdown, unit);
+    unitSwticherEvent(settingsBtn,unitsDropdown, unit, temperatureContainer, currentWeatherDetails);
 
     //Hourly Foracast
     hourlyForecastEvent(hourlyDayBtn, hourlyDaysContainer, weekdayBtn, dayBtn, hourlyList, weatherInfo);
